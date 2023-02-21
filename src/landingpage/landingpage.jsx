@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import React from 'react';
-import Navbar from './components/Navbar';
-import 'tailwindcss/dist/tailwind.css'
-import 'flowbite/css/flowbite.css'
+import Navbar from '../components/Navbar';
+// import './tailwind.css';
 
 function landingpage() {
     return (
-        <div>
+        <div className='w-screen h-screen'>
             <Navbar />
             <div className="container mx-auto">
                 <h1 className="text-2xl font-bold mt-6 mb-3">Hello, World!</h1>
