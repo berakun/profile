@@ -6,7 +6,7 @@ function Navbar() {
     return (
 
         // <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
-        <nav className="z-[-4] px-2 sm:px-4 py-1 rounded backdrop-opacity-10 backdrop-invert bg-black/30">
+        <nav className="px-2 sm:px-4 py-1 rounded fixed w-full z-20 top-0 backdrop-opacity-10 backdrop-invert bg-black/30">
             <div className="flex flex-wrap items-center justify-between mx-2">
                 <a href="" className="flex items-center">
                     <img src={image} className="h-6 mr-3 sm:h-9" />
