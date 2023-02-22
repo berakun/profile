@@ -1,15 +1,19 @@
 import { useState } from 'react'
 import React from 'react';
 import Navbar from '../components/Navbar';
+import Carousel from '../components/Carousel';
 // import './tailwind.css';
 
 function landingpage() {
     return (
         <div className='w-screen h-screen'>
             <Navbar />
-            <div className="container mx-auto">
-                <h1 className="text-2xl font-bold mt-6 mb-3">Hello, World!</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+            <div className="w-screen h-screen">
+                <Carousel />
+                <div className='flex justify-center items-center'>
+                    <h1>IYA HALO</h1>
+                </div>
             </div>
         </div>
     );
