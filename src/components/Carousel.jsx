@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+import Typed from 'typed.js';
 import React from 'react';
 import image from '../assets/carousel/carousel1.png'
 import image2 from '../assets/carousel/carousel2.png'
@@ -45,10 +47,32 @@ import image2 from '../assets/carousel/carousel2.png'
 // const carousel = new Carousel(items, options);
 
 function Carousel() {
+
+    useEffect(() => {
+        const typed = new Typed('#typed-element', {
+            // konfigurasi Typed.js
+            strings: ['Design Interior', 'Design Architecture', 'Side Plan'],
+            typeSpeed: 200,
+            backSpeed: 150,
+            loop: true
+        });
+
+        return () => {
+            typed.destroy();
+        }
+    }, []);
+
     return (
-        <div id="animation-carousel" className="opacity-25 relative h-screen w-screen" data-carousel="static">
+        <div id="animation-carousel" className="relative h-screen w-screen" data-carousel="static">
             {/* <!-- Carousel wrapper --> */}
-            <div className="relative h-56 overflow-hidden rounded-lg md:h-screen">
+            <div className='absolute flex flex-col items-center justify-center h-full w-full'>
+                <h1>Architecture Company</h1>
+                <div className='inline-flex'>
+                    <p className='text-4xl italic ' id="typed-element"></p>
+                </div>
+            </div>
+
+            <div className="opacity-5 relative h-56 overflow-hidden rounded-lg md:h-screen">
                 {/* <!-- Item 1 --> */}
                 <div className="duration-50 ease-linear" data-carousel-item>
                     <img src={image} className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />

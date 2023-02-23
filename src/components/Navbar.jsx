@@ -1,6 +1,7 @@
-import React from 'react';
-import image from '../assets/logo/logo1.png'
-import Carousel from '../components/Carousel';
+
+import React, { createElement } from 'react';
+import image from '../assets/logo/Putih.png'
+import { Fb, Ig, Linkedin, Wa } from '../assets/icon/index';
 
 function Navbar() {
     return (
@@ -9,7 +10,7 @@ function Navbar() {
         <nav className="px-2 sm:px-4 py-1 rounded fixed w-full z-20 top-0 backdrop-opacity-10 backdrop-invert bg-black/30">
             <div className="flex flex-wrap items-center justify-between mx-2">
                 <a href="" className="flex items-center">
-                    <img src={image} className="h-6 mr-3 sm:h-9" />
+                    <img src={image} className="h-6 mr-3 sm:h-10" />
                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
@@ -20,23 +21,24 @@ function Navbar() {
                     <ul className="flex flex-col p-4 mt-4 border  rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 ">
                         {/* <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white"> */}
                         <li>
-                            <a href="instagram.com" target="_blank">
-                                <img src={image} className="h-6 mr-3 sm:h-5" />
+                            <a href="https://instagram.com" target="_blank" className='text-white-500 w-4 appearance-none hover:bg-red-700'>
+                                {/* <img src={ig} className="h-6 mr-3 sm:h-5" /> */}
+                                {createElement(Ig)}
                             </a>
                         </li>
                         <li>
-                            <a href="instagram.com" target="_blank">
-                                <img src={image} className="h-6 mr-3 sm:h-5" />
+                            <a href="instagram.com" target="_blank" className='text-white-500 w-4 appearance-none'>
+                                {createElement(Fb)}
                             </a>
                         </li>
                         <li>
-                            <a href="instagram.com" target="_blank">
-                                <img src={image} className="h-6 mr-3 sm:h-5" />
+                            <a href="instagram.com" target="_blank" className='text-white-500 w-4 appearance-none'>
+                                {createElement(Linkedin)}
                             </a>
                         </li>
                         <li>
-                            <a href="instagram.com" target="_blank">
-                                <img src={image} className="h-6 mr-3 sm:h-5" />
+                            <a href="instagram.com" target="_blank" className='text-white-500 w-4 appearance-none'>
+                                {createElement(Wa)}
                             </a>
                         </li>
                     </ul>
