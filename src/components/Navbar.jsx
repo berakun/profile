@@ -1,16 +1,40 @@
 
-import React, { createElement } from 'react';
-import image from '../assets/logo/Putih.png'
+import React, { createElement, useEffect, useState } from 'react';
+import logo from '../assets/logo/Putih.png'
+import logoblack from '../assets/logo/Hitam.png'
 import { Fb, Ig, Linkedin, Wa } from '../assets/icon/index';
 
 function Navbar() {
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [logoSrc, setLogoSrc] = useState(logo);
+
+    useEffect(() => {
+        function handleScroll() {
+            const position = window.pageYOffset;
+            setScrollPosition(position);
+
+            if (position > 0 && logoSrc === logo) {
+                setLogoSrc(logoblack);
+            } else if (position === 0 && logoSrc === logoblack) {
+                setLogoSrc(logo);
+            }
+        }
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [logoSrc]);
+
     return (
 
         // <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
-        <nav className="px-2 sm:px-4 py-1 rounded fixed w-full z-20 top-0 backdrop-opacity-10 backdrop-invert bg-black/30">
-            <div className="flex flex-wrap items-center justify-between mx-2">
+        <nav className="px-2 sm:px-4 py-1 rounded fixed w-full z-20 top-0 backdrop-opacity-10 backdrop-invert bg-black/30" style={{ backgroundColor: scrollPosition > 50 ? "white" : "transparent" }}>
+            <div className="flex flex-wrap items-center justify-between mx-2 logo">
                 <a href="" className="flex items-center">
-                    <img src={image} className="h-6 mr-3 sm:h-10" />
+                    <img src={logoSrc} alt="Logo" className="h-6 mr-3 sm:h-10" />
                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
