@@ -2,12 +2,16 @@
 import React, { createElement, useEffect, useState } from 'react';
 import logo from '../assets/logo/Putih.png'
 import logoblack from '../assets/logo/Hitam.png'
-import { Fb, Ig, Linkedin, Wa } from '../assets/icon/index';
+import { Fb, Ig, Linkedin, Wa } from '../assets/icon/putih/index';
+import { Fbhitam, Ighitam, Linkedinhitam, Wahitam } from '../assets/icon/hitam/indexhitam';
 
 function Navbar() {
 
+    const icon = { Fb, Ig, Linkedin, Wa };
+    const iconBlack = [Fbhitam, Ighitam, Linkedinhitam, Wahitam];
     const [scrollPosition, setScrollPosition] = useState(0);
     const [logoSrc, setLogoSrc] = useState(logo);
+    const [iconSrc, setIconSrc] = useState(icon);
 
     useEffect(() => {
         function handleScroll() {
@@ -19,6 +23,13 @@ function Navbar() {
             } else if (position === 0 && logoSrc === logoblack) {
                 setLogoSrc(logo);
             }
+
+
+            if (position > 0 && iconSrc === icon) {
+                setIconSrc(iconBlack);
+            } else if (position === 0 && iconSrc === iconBlack) {
+                setIconSrc(icon);
+            }
         }
 
         window.addEventListener("scroll", handleScroll, { passive: true });
@@ -26,7 +37,7 @@ function Navbar() {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [logoSrc]);
+    }, [logoSrc, iconSrc]);
 
     return (
 
@@ -46,23 +57,26 @@ function Navbar() {
                         {/* <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white"> */}
                         <li>
                             <a href="https://instagram.com" target="_blank" className='text-white-500 w-4 appearance-none hover:bg-red-700'>
-                                {/* <img src={ig} className="h-6 mr-3 sm:h-5" /> */}
-                                {createElement(Ig)}
+                                <img src={iconSrc} className="h-6 mr-3 sm:h-5" />
+                                {/* {createElement(Ig)} */}
                             </a>
                         </li>
                         <li>
                             <a href="instagram.com" target="_blank" className='text-white-500 w-4 appearance-none'>
-                                {createElement(Fb)}
+                                <img src={iconSrc} className="h-6 mr-3 sm:h-5" />
+                                {/* {createElement(Fb)} */}
                             </a>
                         </li>
                         <li>
                             <a href="instagram.com" target="_blank" className='text-white-500 w-4 appearance-none'>
-                                {createElement(Linkedin)}
+                                <img src={iconSrc} className="h-6 mr-3 sm:h-5" />
+                                {/* {createElement(Linkedin)} */}
                             </a>
                         </li>
                         <li>
                             <a href="instagram.com" target="_blank" className='text-white-500 w-4 appearance-none'>
-                                {createElement(Wa)}
+                                <img src={iconSrc} className="h-6 mr-3 sm:h-5" />
+                                {/* {createElement(Wa)} */}
                             </a>
                         </li>
                     </ul>

@@ -11,7 +11,7 @@ function Carousel() {
     useEffect(() => {
         const typed = new Typed('#typed-element', {
             // konfigurasi Typed.js
-            strings: ['Design Interior', 'Design Architecture', 'Side Plan'],
+            strings: ['Design Interior', 'Design Architecture', 'Site Plan'],
             typeSpeed: 110,
             backSpeed: 80,
             loop: true
