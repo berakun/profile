@@ -6,10 +6,10 @@ import image3 from '../assets/carousel/carousel3.png'
 function Pageimage() {
 
     return (
-        <div class="gap-0 columns-3" >
-            <img class="w-full aspect-video ..." src={image} />
-            <img class="w-full aspect-square ..." src={image2} />
-            <img class="w-full aspect-video ..." src={image3} />
+        <div className="gap-0 columns-3" >
+            <img className="w-full aspect-video ..." src={image} />
+            <img className="w-full aspect-square ..." src={image2} />
+            <img className="w-full aspect-video ..." src={image3} />
         </div>
     );
 

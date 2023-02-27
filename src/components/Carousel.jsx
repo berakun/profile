@@ -7,7 +7,7 @@ import image3 from '../assets/carousel/carousel3.png'
 import ImageSlider, { Slide } from "react-auto-image-slider";
 
 function Carousel() {
-
+    const [loaded, setLoad] = useState(false)
     useEffect(() => {
         const typed = new Typed('#typed-element', {
             // konfigurasi Typed.js
@@ -17,6 +17,9 @@ function Carousel() {
             loop: true
         });
 
+        setTimeout(() => {
+            setLoad(true)
+        }, 1000)
         return () => {
             typed.destroy();
         }
@@ -25,7 +28,7 @@ function Carousel() {
     return (
         <div>
             <div className='absolute flex flex-col items-center justify-center h-full w-full'>
-                <h1>Architecture Company</h1>
+                <h1 className={`${loaded ? 'opacity-1' : 'opacity-0 translate-y-3'} duration-1000 transition-transform`}>Architecture Company</h1>
                 <div className='inline-flex'>
                     <p className='text-4xl italic ' id="typed-element"></p>
                 </div>
