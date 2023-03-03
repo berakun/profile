@@ -18,8 +18,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.auto-image-slider .bullet-container {
+  display: none;
+}
+
 .typed-cursor {
-  font-size: 30px;
+  font-size: 50px;
   color: red;
   opacity: 1;
   -webkit-animation: blink 0.7s infinite;

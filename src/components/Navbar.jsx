@@ -1,30 +1,17 @@
 
 import React, { createElement, useEffect, useState } from 'react';
 import { Logo } from '../assets/logo/indexlogo';
-// import logoblack from '../assets/logo/Hitam.png'
 import { Fb, Ig, Linkedin, Wa } from '../assets/icon/index';
-// import { Link } from 'react-router-dom';
 
 function Navbar() {
 
-    // const icon = { Fb, Ig, Linkedin, Wa };
-    // const iconBlack = [Fbhitam, Ighitam, Linkedinhitam, Wahitam];
     const [scrollPosition, setScrollPosition] = useState(0);
-    // const [logoSrc, setLogoSrc] = useState(logo);
-    // const [iconSrc, setIconSrc] = useState(icon);
     const [hide, setHide] = useState(false)
 
     useEffect(() => {
         function handleScroll() {
             const position = window.pageYOffset;
             setScrollPosition(position);
-
-            // if (position > 0 && logoSrc === logo) {
-            //     setLogoSrc(logoblack);
-            // } else if (position === 0 && logoSrc === logoblack) {
-            //     setLogoSrc(logo);
-            // }
-
 
             if (position > 0) {
                 setHide(true)
@@ -46,11 +33,11 @@ function Navbar() {
     }
     const i = { Fb, Ig, Linkedin, Wa }
     const icons = Object.entries(i).map(([k, v], f) => {
-        console.log(f)
         return (
-            // <li key={k} style={{ transitionDelay: `${200 * (f + 1)}ms` }} className={` text-black transition-all duration-1000 ${hide ? 'opacity-1' : '-translate-y-2/4 opacity-0'}`}></li>
-            <li key={k} onClick={open} className={`cursor-pointer transition-all duration-700 ${hide ? 'text-black' : 'text-white'}`}>
-                <span className='text-white-500 w-4 appearance-none hover:bg-red-700'>
+            // <li key={k} style={{ transitionDelay: `${200 * (f + 1)}ms` }} className={` text-black transition-all duration-1000 ${hide ? 'opacity-1' : '-translate-y-2/4 opacity-0'}`}>
+            // <li key={k} onClick={open} className={`cursor-pointer transition-all duration-700 ${hide ? 'text-black' : 'text-white'}`}>
+            <li key={k} onClick={open} className={`cursor-pointer transition-all duration-500 ${hide ? 'text-black hover:text-red-700' : 'text-white hover:text-red-700'}`}>
+                <span className='text-white-500 w-4 appearance-none'>
                     {/* <img src={iconSrc} className="h-6 mr-3 sm:h-5" /> */}
                     {createElement(v)}
                 </span>
@@ -59,10 +46,9 @@ function Navbar() {
     })
     return (
 
-        // <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
-        <nav className="px-2 sm:px-4 py-1 rounded fixed w-full z-20 top-0 backdrop-opacity-10 backdrop-invert bg-black/30" style={{ backgroundColor: scrollPosition > 50 ? "white" : "transparent" }}>
+        <nav className={`px-2 sm:px-4 py-1 rounded fixed w-full z-20 top-0 backdrop-opacity-10 backdrop-invert bg-black/30 transition-color delay-350 ${scrollPosition > 10 ? 'bg-white h-[40px] w-full transition transform' : 'transparent'} `} >
             <div className="flex flex-wrap items-center justify-between mx-2 logo">
-                <a href="" className={`transition-all duration-1000 flex items-center mr-3 sm:h-10 h-[60px]' ${hide ? 'text-black' : 'text-white'}`}>
+                <a href="" className={`transition-all duration-500 flex items-center mr-3 sm:h-10 h-[60px]' ${hide ? 'text-black hover:text-red-700 md:pb-[30px] w-[200px] h-[200px]' : 'text-white hover:text-red-700'}`}>
                     {createElement(Logo)}
                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>
