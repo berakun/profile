@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Carousel from '../components/Carousel';
 import Pageprofile from '../components/pageprofile';
 import Pageimage from '../components/pageimage';
+import Titleimage from '../components/titleimage';
 
 function landingpage() {
 
@@ -16,6 +17,9 @@ function landingpage() {
             </div>
             <div className="w-screen h-screen">
                 <Pageprofile />
+            </div>
+            <div className="w-screen h-[400px]">
+                <Titleimage />
             </div>
             <div className="w-screen h-screen">
                 <Pageimage />

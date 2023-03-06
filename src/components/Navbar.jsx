@@ -36,7 +36,7 @@ function Navbar() {
         return (
             // <li key={k} style={{ transitionDelay: `${200 * (f + 1)}ms` }} className={` text-black transition-all duration-1000 ${hide ? 'opacity-1' : '-translate-y-2/4 opacity-0'}`}>
             // <li key={k} onClick={open} className={`cursor-pointer transition-all duration-700 ${hide ? 'text-black' : 'text-white'}`}>
-            <li key={k} onClick={open} className={`cursor-pointer transition-all duration-500 ${hide ? 'text-black hover:text-red-700' : 'text-white hover:text-red-700'}`}>
+            <li key={k} onClick={open} className={`cursor-pointer transition-all duration-100 ${hide ? 'text-black hover:text-red-700 transition translate-y-2 delay 350' : 'text-white hover:text-red-700'}`}>
                 <span className='text-white-500 w-4 appearance-none'>
                     {/* <img src={iconSrc} className="h-6 mr-3 sm:h-5" /> */}
                     {createElement(v)}
@@ -46,9 +46,9 @@ function Navbar() {
     })
     return (
 
-        <nav className={`px-2 sm:px-4 py-1 rounded fixed w-full z-20 top-0 backdrop-opacity-10 backdrop-invert bg-black/30 transition-color delay-350 ${scrollPosition > 10 ? 'bg-white h-[40px] w-full transition transform' : 'transparent'} `} >
+        <nav className={`px-2 sm:px-4 py-1 rounded fixed w-full z-20 top-0 backdrop-opacity-10 backdrop-invert bg-black/30 transition-transform delay-350 ${scrollPosition > 10 ? 'bg-white transition -translate-y-4 delay-350' : 'transparent'} `} >
             <div className="flex flex-wrap items-center justify-between mx-2 logo">
-                <a href="" className={`transition-all duration-500 flex items-center mr-3 sm:h-10 h-[60px]' ${hide ? 'text-black hover:text-red-700 md:pb-[30px] w-[200px] h-[200px]' : 'text-white hover:text-red-700'}`}>
+                <a href="" className={`transition-all duration-500 flex items-center mr-3 sm:h-10 h-[60px]' ${hide ? 'text-black hover:text-red-700 transition -translate delay-350 w-[200px] h-[200px]' : 'text-white hover:text-red-700'}`}>
                     {createElement(Logo)}
                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white"></span>
                 </a>
