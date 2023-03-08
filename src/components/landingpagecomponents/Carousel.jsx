@@ -1,11 +1,11 @@
 import { useState, useEffect, createElement } from 'react'
 import Typed from 'typed.js';
 import React from 'react';
-import image from '../assets/carousel/carousel1.png'
-import image2 from '../assets/carousel/carousel2.png'
-import image3 from '../assets/carousel/carousel3.png'
+import image from '../../assets/carousel/carousel1.png'
+import image2 from '../../assets/carousel/carousel2.png'
+import image3 from '../../assets/carousel/carousel3.png'
 import ImageSlider, { Slide } from "react-auto-image-slider";
-import { Downicon } from '../assets/icon/index';
+import { Downicon } from '../../assets/icon/index';
 
 function Carousel() {
     const [loaded, setLoad] = useState(false)

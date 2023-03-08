@@ -1,7 +1,7 @@
 
-import image from '../assets/carousel/carousel1.png'
-import image2 from '../assets/carousel/carousel2.png'
-import image3 from '../assets/carousel/carousel3.png'
+import image from '../../assets/carousel/carousel1.png'
+import image2 from '../../assets/carousel/carousel2.png'
+import image3 from '../../assets/carousel/carousel3.png'
 
 function Pageimage() {
 

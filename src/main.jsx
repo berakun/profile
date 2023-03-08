@@ -1,10 +1,20 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import React from 'react'
-// import ReactDOM from 'react-dom'
-// import ReactDOM from 'react-dom/client'
-import Landingpage from './landingpage/landingpage'
-import Admin from './adminpage/admin'
+import ReactDOM from 'react-dom'
+// import Landingpage from './landingpage/landingpage'
+// import Admin from './adminpage/admin'
 import './index.css'
+
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+
+import Landingpage from "./landingpage/landingpage";
+import Admin from "./adminpage/admin";
+import Login from "./adminpage/login";
+import Terms from "./adminpage/terms";
+import Registrasi from "./adminpage/registrasi";
+
+
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
 //   <React.StrictMode>
@@ -12,15 +22,29 @@ import './index.css'
 //   </React.StrictMode>,
 // )
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Landingpage} />
-        <Route path="/admin" exact component={Admin} />
-      </Switch>
-    </BrowserRouter>
-  )
-}
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Landingpage />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/termsandcondition",
+    element: <Terms />,
+  },
+  {
+    path: "/registrasi",
+    element: <Registrasi />,
+  },
+]);
 
-export default App
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);

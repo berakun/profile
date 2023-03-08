@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import React from 'react';
-import Navbar from '../components/Navbar';
-import Carousel from '../components/Carousel';
-import Pageprofile from '../components/pageprofile';
-import Pageimage from '../components/pageimage';
-import Titleimage from '../components/titleimage';
+import Navbar from '../components/landingpagecomponents/Navbar';
+import Carousel from '../components/landingpagecomponents/Carousel';
+import Pageprofile from '../components/landingpagecomponents/pageprofile';
+import Pageimage from '../components/landingpagecomponents/pageimage';
+import Titleimage from '../components/landingpagecomponents/titleimage';
 
 function landingpage() {
 
@@ -18,10 +18,10 @@ function landingpage() {
             <div className="w-screen h-screen">
                 <Pageprofile />
             </div>
-            <div className="w-screen h-[400px]">
+            <div className="w-screen">
                 <Titleimage />
             </div>
-            <div className="w-screen h-screen">
+            <div className="bg-neutral-900 w-screen h-screen">
                 <Pageimage />
             </div>
         </div>
