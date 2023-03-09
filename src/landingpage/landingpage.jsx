@@ -6,6 +6,7 @@ import Pageprofile from '../components/landingpagecomponents/pageprofile';
 import Pageimage from '../components/landingpagecomponents/pageimage';
 import Titleimage from '../components/landingpagecomponents/titleimage';
 
+
 function landingpage() {
 
     return (
