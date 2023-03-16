@@ -29,6 +29,7 @@ function Pageadmin() {
         setData([
             ...response.data
         ])
+        console.log(response);
     }
 
     useEffect(() => {
@@ -98,20 +99,28 @@ function Pageadmin() {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    {/* {data.map(response => ( */}
+                    <tr
+                        // key={item.id}
+                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Apple MacBook Pro 17"
+                            {/* {response.product} */}
+                            adawdadawdcaw
                         </th>
                         <td class="px-6 py-4">
-                            Silver
+                            {/* {response.color} */}
+                            awdadadawdad
                         </td>
                         <td class="px-6 py-4">
-                            Laptop
+                            {/* {response.category} */}
+                            adadadadada
                         </td>
                         <td class="px-6 py-4">
-                            $2999
+                            {/* {response.price} */}
+                            azazazaz
                         </td>
                     </tr>
+                    {/* ))} */}
                 </tbody>
             </table>
         </div>

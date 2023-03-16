@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom/client'
 // import Landingpage from './landingpage/landingpage'
 // import Admin from './adminpage/admin'
 import './index.css'
