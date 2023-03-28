@@ -25,25 +25,14 @@ function Pageadmin() {
     const [data, setData] = useState({})
 
     async function loadData() {
-        const response = await gorilla.get('/')
-        setData([
-            ...response.data
-        ])
+        const response = await gorilla.get('/');
+        setData(response.data);
         console.log(response);
     }
 
     useEffect(() => {
-
-        async function loadData() {
-            const response = await gorilla.get('/')
-            setData([
-                ...response.data
-            ])
-        }
-        loadData()
-
-
-    }, [data])
+        loadData();
+    }, []);
 
     return (
 
