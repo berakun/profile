@@ -13,14 +13,14 @@ function Pageadmin() {
             ...form,
             [key]: e.target.value
         })
-        console.log({ key, b: e.target.value, form });
+        // console.log({ key, b: e.target.value, form });
     }
 
     const handleClick = async (e) => {
         e.preventDefault();
         const res = await gorilla.post('/store', form)
         window.location.reload();
-        console.log(res);
+        // console.log(res);
         loadData()
     }
 
@@ -32,7 +32,7 @@ function Pageadmin() {
         const response = await gorilla.get('/');
         const data = await response.data.data;
         setData(data);
-        console.log(response);
+        // console.log(response);
     }
 
     useEffect(() => {
@@ -48,16 +48,37 @@ function Pageadmin() {
 
 
     // SIMPAN DATA REST API KETIKA DI KLIK
-    const [selectedId, setSelectedId] = useState(null);
-    useEffect(() => {
-        fetch(gorilla)
-            .then(response => response.json())
-            .then(data => setData(data));
-    }, []);
+    // const [selectedId, setSelectedId] = useState(null);
+    // useEffect(() => {
+    //     fetch(gorilla)
+    //         .then(response => response.json())
+    //         .then(data => setData(data));
+    // }, []);
 
-    const clickId = (id) => {
-        setSelectedId(id);
+
+    const [dataId] = useState([])
+    function OnhandleClick(id) {
+        // const id = event.target.id;
+        fetch(`http://localhost:8000/api/posts/${id}`)
+            .then(response => response.json())
+            .then(dataId => console.log(dataId));
     }
+
+
+    const handleDelete = async (id) => {
+        const response = await fetch(`http://localhost:8000/api/posts/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        loadData();
+    };
 
 
     return (
@@ -103,6 +124,9 @@ function Pageadmin() {
                             No
                         </th>
                         <th scope="col" className="px-6 py-3">
+                            ID
+                        </th>
+                        <th scope="col" className="px-6 py-3">
                             Product name
                         </th>
                         <th scope="col" className="px-6 py-3">
@@ -131,6 +155,9 @@ function Pageadmin() {
                                 {index + 1}
                             </td>
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {data.id}
+                            </th>
+                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {data.product_name}
                             </th>
                             <td className="px-6 py-4">
@@ -142,13 +169,13 @@ function Pageadmin() {
                             <td className="px-6 py-4">
                                 {data.price}
                             </td>
-                            <td className="px-6 py-4 w-5 h-5" onClick={() => clickId(data.id)}>
-                                <button type="Submit" className="bg-inherit">
+                            <td className="px-6 py-4 w-5 h-5">
+                                <button type="Submit" onClick={() => OnhandleClick(data.id)} className="bg-inherit">
                                     {createElement(Pencil)}
                                 </button>
                             </td>
-                            <td className="px-6 py-4 w-5 h-5" onClick={() => clickId(data.id)}>
-                                <button type="Submit" className="bg-inherit">
+                            <td className="px-6 py-4 w-5 h-5">
+                                <button type="Submit" onClick={() => handleDelete(data.id)} className="bg-inherit">
                                     {createElement(Delete)}
                                 </button>
                             </td>
