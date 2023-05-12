@@ -3,7 +3,7 @@
 function Pageprofile() {
 
     return (
-        <div className="bg-white w-screen h-screen">
+        <div className="bg-white h-screen">
             <div className="flex flex-col items-center justify-center h-full w-full">
                 <div className="px-7 container">
                     <p className="mb-3 text-lg font-light text-black md:text-xl dark:text-black">

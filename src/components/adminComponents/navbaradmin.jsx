@@ -3,7 +3,7 @@ import { Logo } from '../../assets/logo/indexlogo';
 
 function Navbaradmin() {
     return (
-        <nav className="border-gray-200 px-2 sm:px-4 py-2.5 rounded-none bg-zinc-700">
+        <nav className="border-gray-200 px-2 sm:px-4 py-2.5 rounded-none bg-zinc-700 w-screen">
             <div className="container flex flex-wrap items-center justify-between mx-auto">
                 <a href="/admin" className="flex items-center text-white hover:text-red-600">
                     {createElement(Logo)}

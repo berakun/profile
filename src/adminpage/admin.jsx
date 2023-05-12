@@ -7,13 +7,13 @@ function Admin() {
 
     return (
         <div>
-            <div className='w-screen'>
+            <div>
                 <Navbaradmin />
             </div>
             <div className='bg-white'>
                 <Table />
             </div>
-            <div className='w-screen h-screen'>
+            <div>
                 <Landingpageadmin />
             </div>
         </div>
