@@ -28,7 +28,7 @@ function Pageadmin() {
 
     const handleClick = async (e) => {
         e.preventDefault();
-        const res = await gorilla.post('/store', form)
+        const res = await gorilla.post('/posts/store', form)
         window.location.reload();
         // console.log(res);
         loadData()
@@ -39,7 +39,7 @@ function Pageadmin() {
     const [data, setData] = useState([])
 
     async function loadData() {
-        const response = await gorilla.get('/');
+        const response = await gorilla.get('/posts/');
         const data = await response.data.data;
         setData(data);
         // console.log(response);
