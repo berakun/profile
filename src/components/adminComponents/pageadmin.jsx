@@ -3,7 +3,13 @@ import { Delete, Pencil } from '../../assets/icon/index';
 import { gorilla } from "../../plugins/useAxios";
 
 function Pageadmin() {
+    const [deleteId, setDeleteId] = useState("");
 
+    //POPUP TAMBAH DATA
+    const [showPopup, setShowPopup] = useState(false);
+    const togglePopup = () => {
+        setShowPopup(!showPopup);
+    }
 
     const header = [
         { text: 'no', value: '' },
@@ -59,46 +65,57 @@ function Pageadmin() {
         );
     }
 
-    //POPUP
-    const [showPopup, setShowPopup] = useState(false);
-    const togglePopup = () => {
-        setShowPopup(!showPopup);
+    //POPUP EDIT
+    const [showEdit, setShowEdit] = useState(false);
+    const [update, setUpdate] = useState([])
+
+    const handleCloseEdit = () => setShowEdit(false);
+    const handleShowEdit = async (id) => {
+        setEditId(id)
+        setShowEdit(true);
+
+        console.log(id);
+
+        const response = await gorilla.get(`/posts/${id}`);
+        console.log(response);
+        const newupdate = response.data.data;
+        setUpdate(newupdate);
+
     }
 
-    // SIMPAN DATA REST API KETIKA DI KLIK
-    // const [selectedId, setSelectedId] = useState(null);
-    // useEffect(() => {
-    //     fetch(gorilla)
-    //         .then(response => response.json())
-    //         .then(data => setData(data));
-    // }, []);
+    //EDIT ACTION
 
+    const [editId, setEditId] = useState()
+    const handleChange = (key, e) => {
+        setEditId({
+            ...editId,
+            [key]: e.target.value,
+        });
+    };
 
-    const [dataId] = useState([])
-    function OnhandleClick(id) {
-        // const id = event.target.id;
-        fetch(`http://localhost:8000/api/posts/${id}`)
-            .then(response => response.json())
-            .then(dataId => console.log(dataId));
+    const onHandleChange = async (e) => {
+        console.log(e)
+        console.log(id)
+        console.log(data.id)
+        e.preventDefault();
 
+        const res = await fetch(gorilla.post(`posts/${id}`))
         window.location.reload();
+        // console.log(res);
+        loadData()
     }
 
-    //DELETE DATA
-
-    // const [showModal, setShowModal] = useState(false);
-    // const valModal = () => {
-    //     setShowModal(!showModal);
-    // }
-
+    //POPUP DETELE
     const [showModal, setShowModal] = useState(false);
 
     const handleClose = () => setShowModal(false);
-    const handleShow = () => {
-        console.log("rawr")
+    const handleShow = (id) => {
+
+        setDeleteId(id)
         setShowModal(true);
-        console.log(showModal)
     }
+
+    //ACTION DELETE
     const handleDelete = async (id) => {
         const response = await fetch(`http://localhost:8000/api/posts/${id}`, {
             method: 'DELETE',
@@ -122,7 +139,12 @@ function Pageadmin() {
         <div className="container mx-auto py-4 h-screen">
             {/* POPUP */}
             {showPopup ? (
-                <div className="popup absolute bg-white rounded ring-2 dark:ring-gray-500 p-8">
+                <div className="container mx-auto popup absolute bg-white rounded ring-2 dark:ring-gray-500 p-8">
+                    <div className="flex justify-end">
+                        <button onClick={togglePopup} className="bg-white text-black">
+                            X
+                        </button>
+                    </div>
                     <form onSubmit={handleClick}>
                         <div className="mb-6">
                             <label for="input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">product name</label>
@@ -145,8 +167,39 @@ function Pageadmin() {
                 </div>
             ) : null}
 
+            {/* EDIT POPUP */}
+            {showEdit ? (
+
+                <div className="popup absolute bg-white rounded ring-2 dark:ring-gray-500 p-8 container mx-auto w-full">
+                    <div className="flex justify-end">
+                        <button onClick={handleCloseEdit} className="bg-white text-black">
+                            X
+                        </button>
+                    </div>
+                    <form key={update.id} onSubmit={onHandleChange}>
+                        <div className="mb-6">
+                            <label for="input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">product name</label>
+                            <input type="input" onChange={(e) => handleChange('product_name', e.target.value)} value={update.product_name} id="product" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        </div>
+                        <div className="mb-6">
+                            <label for="input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">color</label>
+                            <input type="input" onChange={(e) => handleChange('color', e.target.value)} value={update.color} id="color" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        </div>
+                        <div className="mb-6">
+                            <label for="input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">category</label>
+                            <input type="input" onChange={(e) => handleChange('category', e.target.value)} value={update.category} id="category" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        </div>
+                        <div className="mb-6">
+                            <label for="input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">price</label>
+                            <input type="input" onChange={(e) => handleChange('price', e.target.value)} value={update.price} id="price" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                        </div>
+                        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    </form>
+                </div>
+            ) : null}
+
             {showModal ? (
-                <div tabIndex="-1" className="absolute top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div tabIndex="-1" className="fixed container mx-auto flex items-center justify-center w-full">
                     <div className="w-full max-w-md max-h-full">
                         <div className="bg-white rounded-lg shadow dark:bg-gray-700">
                             <button type="button" className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="popup-modal">
@@ -156,7 +209,7 @@ function Pageadmin() {
                             <div className="p-6 text-center">
                                 <svg aria-hidden="true" className="mx-auto mb-4 text-gray-400 w-14 h-14 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
-                                <button data-modal-hide="popup-modal" type="button" className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                                <button onClick={() => handleDelete(deleteId)} data-modal-hide="popup-modal" type="button" className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                                     Yes, I'm sure
                                 </button>
                                 <button data-modal-hide="popup-modal" onClick={() => handleClose()} type="button" className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
@@ -210,7 +263,7 @@ function Pageadmin() {
                                 {data.price}
                             </td>
                             <td className="px-6 py-4 w-5 h-5">
-                                <button type="Submit" onClick={() => OnhandleClick(data.id)} className="bg-inherit">
+                                <button onClick={() => handleShowEdit(data.id)} className="bg-inherit">
                                     {createElement(Pencil)}
                                 </button>
                             </td>
@@ -219,7 +272,7 @@ function Pageadmin() {
                                 {createElement(Delete)}
                                 </button> */}
 
-                                <button onClick={() => { handleShow() }} className="bg-inherit" type="button">
+                                <button onClick={() => handleShow(data.id)} className="bg-inherit" type="button">
                                     {createElement(Delete)}
                                 </button>
                             </td>

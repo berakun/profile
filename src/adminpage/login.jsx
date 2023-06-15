@@ -1,7 +1,22 @@
 import { gorilla } from "../plugins/useAxios";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+// import { Navigate, useNavigate } from 'react-router-dom';
 
 function Loginadmin() {
+    // const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isLoggedIn()) {
+            window.location.href = '/admin';
+        }
+    }, []);
+
+    const isLoggedIn = () => {
+        // Implement your own logic to check if the user is logged in
+        // For example, check if a token is present in localStorage
+        const accessToken = localStorage.getItem('accessToken');
+        return !!accessToken; // Return true if accessToken exists, false otherwise
+    };
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,6 +33,7 @@ function Loginadmin() {
     };
 
 
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         // console.log(email, password);
@@ -29,7 +45,8 @@ function Loginadmin() {
             localStorage.setItem('accessToken', accessToken);
 
             // Arahkan pengguna ke halaman /admin
-            window.location.href = '/admin';
+            // window.location.href = '/admin';
+            history.push('/admin');
         } catch (error) {
             // Login gagal, tangani error (misalnya menampilkan pesan error)
             setError('Login failed. Please check your credentials.');
